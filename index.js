@@ -14,12 +14,23 @@ var path    = require("path");
 
 var DOMO = require('./DOMO');
 var MyDOMO = new DOMO();
-var exec = require('child_process');
 
 io.on('connection', function(socket) {
   console.log(socket.conn.id+" connected");
   socket.on('instruction',function(data){
-    socket.emit('answer',true);
+    var res;
+    try {
+      var cmd = "MyDOMO.actions['"+data.split('.')[0]+"']."+data.split('.')[1]
+      console.log(cmd);
+      res = eval(cmd);
+      //MyDOMO.actions['d0_0'];
+      socket.emit('answer',true);
+    } catch (e) {
+      console.log("Error instruction: " + e);
+      socket.emit('answer',false);
+    } finally {
+      console.log(res);
+    }
   });
 });
 
