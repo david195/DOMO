@@ -1,0 +1,11 @@
+{
+  "name": "David's Room",
+  "ndevices": 1,
+  "devices": [
+    {
+      "id": 0,
+      "name": "4Rele",
+      "description": "Controlador de 4 reles y sensor de temperatura ambiental."
+    }
+  ]
+}
